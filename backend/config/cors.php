@@ -14,7 +14,7 @@ return [
 
     'allowed_origins_patterns' => [
         // Opcional: Permite cualquier vista previa/deploy preview que te genere Vercel
-        'https://.*\.vercel\.app',
+        'https://crm-proyecto-peq7tdmqx-jg585480-5121s-projects.vercel.app',
     ],
 
     'allowed_headers' => ['*'],
@@ -23,6 +23,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => true,
+    'supports_credentials' => false,
 
 ];
