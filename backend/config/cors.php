@@ -13,8 +13,7 @@ return [
     ],
 
     'allowed_origins_patterns' => [
-        // Opcional: Permite cualquier vista previa/deploy preview que te genere Vercel
-        'https://crm-proyecto-peq7tdmqx-jg585480-5121s-projects.vercel.app',
+        '*'
     ],
 
     'allowed_headers' => ['*'],
