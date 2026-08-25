@@ -1,5 +1,13 @@
 FROM php:8.3-fpm
+# Crear directorios de almacenamiento y caché si no existen
+RUN mkdir -p storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/app/public \
+    bootstrap/cache
 
+# Asignar permisos de escritura para el servidor web/Laravel
+RUN chmod -R 777 storage bootstrap/cache
 # Instalar dependencias del sistema y extensiones necesarias (incluyendo PostgreSQL)
 RUN apt-get update && apt-get install -y \
     git \
