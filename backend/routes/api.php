@@ -33,13 +33,27 @@ Route::apiResources([
 
 Route::get('/setup-db-2026', function () {
     try {
-        // Corre las migraciones y ejecuta los seeders
-        Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        // Ejecuta migraciones obligando a recrear todo con seeds
+        Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true
+        ]);
+
+        // Limpia cachés de Laravel
         Artisan::call('config:clear');
         Artisan::call('cache:clear');
+        Artisan::call('route:clear');
 
-        return '¡Éxito! Base de datos migrada y poblada correctamente.';
-    } catch (\Exception $e) {
-        return 'Error al ejecutar setup: ' . $e->getMessage();
+        return response()->json([
+            'status' => 'Éxito',
+            'message' => 'Base de datos migrada y sembrada correctamente.',
+            'output' => Artisan::output()
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'status' => 'Error',
+            'error' => $e->getMessage(),
+            'trace' => $e->getFile() . ' (Línea ' . $e->getLine() . ')'
+        ], 500);
     }
 });
