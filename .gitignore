@@ -1,0 +1,51 @@
+# ==========================================
+# Archivos de entorno y SO (Raíz y subcarpetas)
+# ==========================================
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+
+# ==========================================
+# Backend (Laravel - /backend)
+# ==========================================
+/backend/node_modules/
+/backend/vendor/
+/backend/bootstrap/cache/*.php
+/backend/storage/*.key
+/backend/storage/logs/
+/backend/storage/framework/cache/
+/backend/storage/framework/sessions/
+/backend/storage/framework/views/
+/backend/storage/app/public/
+/backend/.phpunit.result.cache
+/backend/Homestead.json
+/backend/Homestead.yaml
+/backend/npm-debug.log
+/backend/yarn-error.log
+
+# ==========================================
+# Frontend (Next.js - /crm_guia)
+# ==========================================
+/crm_guia/node_modules/
+/crm_guia/.next/
+/crm_guia/out/
+/crm_guia/build/
+/crm_guia/dist/
+/crm_guia/.pnpm-debug.log*
+/crm_guia/yarn-debug.log*
+/crm_guia/yarn-error.log*
+/crm_guia/.vercel
+/crm_guia/*.tsbuildinfo
+/crm_guia/next-env.d.ts
+
+# IDEs y Editores de código
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
