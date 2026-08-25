@@ -47,8 +47,15 @@ class DatabaseSeeder extends Seeder
                 $hasSequence = DB::select("SELECT to_regclass('{$sequenceName}') as seq");
 
                 if (!empty($hasSequence) && $hasSequence[0]->seq !== null) {
-                    $maxId = DB::table($table)->max('id') ?? 0;
-                    DB::statement("SELECT setval('{$sequenceName}', {$maxId});");
+                    $maxId = DB::table($table)->max('id');
+
+                    if ($maxId && $maxId > 0) {
+                        // Si la tabla tiene datos, el siguiente ID será $maxId + 1
+                        DB::statement("SELECT setval('{$sequenceName}', {$maxId});");
+                    } else {
+                        // Si la tabla está vacía, reinicia la secuencia en 1 para la siguiente inserción
+                        DB::statement("SELECT setval('{$sequenceName}', 1, false);");
+                    }
                 }
             }
         }
